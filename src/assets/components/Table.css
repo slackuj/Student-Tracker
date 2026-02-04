@@ -1,0 +1,23 @@
+.grid-table {
+    display: grid;
+    width: 100%;
+    border: 1px solid darkcyan;
+    background-color: lightcyan;
+    margin-top: 40px;
+}
+
+.grid-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid darkcyan;
+    text-align: center;
+}
+
+.grid-row div {
+    padding: 12px;
+}
+
+.header {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}

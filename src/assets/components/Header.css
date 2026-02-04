@@ -1,0 +1,9 @@
+.header {
+    color: blueviolet;
+    text-align: center;
+}
+
+.header__title {
+    font-size: 2rem;
+    font-weight: bold;
+}

@@ -1,0 +1,11 @@
+:root {
+    font-family: system-ui;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+body{
+    background-color: cyan;
+    min-width: 300px;
+    min-height: 100vh;
+}
