@@ -1,9 +1,27 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FaPlus, FaTimes, FaSyncAlt } from "react-icons/fa";
 import Modal from './Modal';
 import './ActionBar.css';
 
-const ActionBar = () => {
+interface ActionBarProps {
+    handleAddName: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleAddRollNumber: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleAddGrade: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleAddContactNumber: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleAddGender: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    handleAddImageURL: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSubmitForm: (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+const ActionBar = ({
+    handleAddName,
+    handleAddRollNumber,
+    handleAddGrade,
+    handleAddContactNumber,
+    handleAddGender,
+    handleAddImageURL,
+    handleSubmitForm
+                   }: ActionBarProps) => {
     const [isModalOpen, setModalOpen] = useState(false);
 
     return (
@@ -25,7 +43,9 @@ const ActionBar = () => {
                 onClose={() => setModalOpen(false)}
                 title="Register New Student"
             >
-                <form className="student-form">
+                <form className="student-form" onSubmit={(e) => {
+                    setModalOpen(false);
+                    handleSubmitForm(e);}}>
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input className="student-form__name"
@@ -33,6 +53,7 @@ const ActionBar = () => {
                                type="text"
                                placeholder="enter name ..."
                                required
+                               onChange={handleAddName}
                         />
                     </div>
                     <div className="form-group">
@@ -43,6 +64,7 @@ const ActionBar = () => {
                             type="number"
                             placeholder="721028"
                             required
+                            onChange={handleAddRollNumber}
                         />
                     </div>
                     <div className="form-group">
@@ -52,6 +74,7 @@ const ActionBar = () => {
                                type="text"
                                placeholder="A"
                                required
+                               onChange={handleAddGrade}
                         />
                     </div>
                     <div className="form-group">
@@ -62,11 +85,17 @@ const ActionBar = () => {
                             type="number"
                             placeholder="9800000000"
                             required
+                            onChange={handleAddContactNumber}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="gender">Gender</label>
-                        <select id="gender" className="student-form__gender">
+                        <select
+                            id="gender"
+                            className="student-form__gender"
+                            value="Male"
+                            onChange={handleAddGender}
+                        >
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Other">Other</option>
@@ -78,10 +107,13 @@ const ActionBar = () => {
                                id="imgURL"
                                type="text"
                                placeholder="enter imageURL"
+                               onChange={handleAddImageURL}
                         />
                     </div>
                     <div className="form-actions">
-                        <button type="submit" className="btn btn--primary">Save Student</button>
+                        <button type="submit"
+                                className="btn btn--primary"
+                        >Save Student</button>
                         <button type="button" className="btn btn--secondary"
                                 onClick={() => setModalOpen(false)}
                         >

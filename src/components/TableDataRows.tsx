@@ -24,6 +24,7 @@ const DataRows = ({dataRows}: dataRowsProps) => {
         <>
             {dataRows.map(dataRow => (
                 <div className="grid-row" key={dataRow.rollNumber}>
+                    <div><input type="checkbox"/></div>
                     {/* Column 1: Avatar + Name */}
                     <div className="avatar-container">
                         <Avatar student={dataRow}/>

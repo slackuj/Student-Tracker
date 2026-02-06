@@ -10,9 +10,14 @@ const TableHeader = ({headers}: TableHeaderProps) => {
     }
 
     return (
-        <div className="grid-row header">
-            {headers.map(header => <div>{header}</div>)}
-        </div>
+        <>
+            <div className="grid-row header" key={crypto.randomUUID()}>
+        <div><input type="checkbox"/></div>
+            {headers.map(header => (
+                    <div>{header}</div>
+            ))}
+            </div>
+        </>
     );
 }
 

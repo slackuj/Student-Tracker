@@ -10,7 +10,7 @@
 .grid-row {
     display: grid;
     /* Adjusting column ratios: Name gets more space, others are equal */
-    grid-template-columns: 2fr 1fr 1fr 1.5fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     border-bottom: 1px solid #dddddd;
     align-items: center; /* Vertically centers the avatar and text */
 }
