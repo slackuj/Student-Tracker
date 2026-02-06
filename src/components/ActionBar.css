@@ -1,0 +1,55 @@
+.action-bar {
+    display: flex;
+    gap: 12px;
+    padding: 6px;
+    background-color: #f8fafc; /* Subtle off-white */
+    border-radius: 8px;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+/* Primary - Cyan Theme */
+.btn--primary {
+    background-color: #0891b2;
+    color: white;
+}
+
+.btn--primary:hover {
+    background-color: #0e7490;
+}
+
+/* Secondary - Matches your Header's blueviolet */
+.btn--secondary {
+    background-color: white;
+    color: blueviolet;
+    border-color: blueviolet;
+}
+
+.btn--secondary:hover {
+    background-color: #f5f3ff;
+}
+
+/* Danger/Disabled States */
+.btn--danger:disabled {
+    background-color: #f1f5f9;
+    color: #94a3b8;
+    border-color: #e2e8f0;
+    cursor: not-allowed;
+}
+
+.icon {
+    font-size: 0.85rem;
+}

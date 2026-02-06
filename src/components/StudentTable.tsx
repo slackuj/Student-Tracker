@@ -1,16 +1,21 @@
 import './Table.css';
 import TableHeader from "./TableHeader.tsx";
 import DataRows from "./TableDataRows.tsx";
+import type {DataRowsProps} from "./TableDataRows.tsx";
 //import DataRows from "./TableDataRows.tsx";
 
 export const headers: string[] = ["Name", "Roll Number", "Grade", "Contact Number", "Gender"];
 
-const StudentTable = () =>{
+interface dataRowsProps {
+    dataRows: DataRowsProps[];
+}
+
+const StudentTable = ({dataRows}: dataRowsProps) =>{
     return (
         <div className="grid-table">
             <TableHeader headers={headers} />
             {/*<DataRows row={}/>*/}
-            <DataRows/>
+            <DataRows dataRows={dataRows} />
         </div>
     );
 };
