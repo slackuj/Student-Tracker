@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { FaPlus, FaTimes, FaSyncAlt } from "react-icons/fa";
 import Modal from './Modal';
 import './ActionBar.css';
+import './AddNewStudent.css';
+import './DeletionModal.css';
 
 interface ActionBarProps {
     handleAddName: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -13,6 +15,7 @@ interface ActionBarProps {
     handleSubmitForm: (e: React.FormEvent<HTMLFormElement>) => void;
     isRmvBtnDisabled: boolean;
     handleDeleteForm: (e: React.FormEvent<HTMLFormElement>) => void;
+    handleNewStudentValidation: () => string;
 }
 
 const ActionBar = ({
@@ -24,7 +27,8 @@ const ActionBar = ({
     handleAddImageURL,
     handleSubmitForm,
     isRmvBtnDisabled,
-    handleDeleteForm
+    handleDeleteForm,
+    handleNewStudentValidation
 }: ActionBarProps) => {
 
     const [isFileModalOpen, setFileModalOpen] = useState(false);
@@ -55,8 +59,10 @@ const ActionBar = ({
                 title="Register New Student"
             >
                 <form className="student-form" onSubmit={(e) => {
+                    e.preventDefault();
+                    if(handleNewStudentValidation() === 'validated') {
                     setFileModalOpen(false);
-                    handleSubmitForm(e);}}>
+                    handleSubmitForm(e);}}}>
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input className="student-form__name"
@@ -165,17 +171,5 @@ const ActionBar = ({
         </div>
     );
 };
-/*
-const ActionBar = () => {
-    return (
-        <div className="action-bar">
-            <button className="btn btn--primary">
-                <FaPlus className="icon" /> New Student
-            </button>
-
-        </div>
-    );
-};
-*/
 
 export default ActionBar;

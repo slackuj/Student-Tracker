@@ -1,6 +1,5 @@
 import './TableDataRows.css';
 import './Table.css';
-import {useState} from "react";
 import Avatar from "./Avatar.tsx";
 
 export type Gender = "Male" | "Female" | "Other";
@@ -31,7 +30,7 @@ const DataRows = ({dataRows, handleShouldDelete}: dataRowsProps) => {
                         checked={dataRow.shouldDelete}
                         onChange={() => handleShouldDelete(dataRow.rollNumber)}
                     /></div>
-                    {/* Column 1: Avatar + Name */}
+                    {/* Second Column: Avatar + Name */}
                     <div className="avatar-container">
                         <Avatar student={dataRow}/>
                         {/*<img

@@ -4,12 +4,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    margin: ;
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;
-    /* Pushes the modal content to the right */
     justify-content: flex-end;
-    align-items: stretch; /* Makes content fill full height */
+    align-items: stretch;
     z-index: 1000;
     backdrop-filter: blur(1px);
 }
@@ -17,12 +15,11 @@
 .modal-content {
     background: white;
     width: 100%;
-    max-width: 400px; /* Standard drawer width */
-    height: 100%; /* Full screen height */
+    max-width: 400px;
+    height: 100%;
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
-    /* Animation for sliding in from the right */
     animation: slideInRight 0.3s ease-out;
 }
 
@@ -38,7 +35,7 @@
 .modal-header h2 {
     margin: 0;
     font-size: 1.25rem;
-    color: #111827; /* Matches your .user-name color */
+    color: #111827;
 }
 
 .close-btn {
@@ -53,17 +50,16 @@
 }
 
 .close-btn:hover {
-    color: #0891b2; /* Matches your .grid-table border */
+    color: #0891b2;
     transform: rotate(90deg);
 }
 
 .modal-body {
     padding: 24px;
-    flex: 1; /* Allows body to scroll if content is long */
+    flex: 1;
     overflow-y: auto;
 }
 
-/* New Animation for Right Side Slide-in */
 @keyframes slideInRight {
     from {
         transform: translateX(100%);

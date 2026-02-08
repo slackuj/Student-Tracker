@@ -20,7 +20,7 @@ const Avatar = ({student}: Avatar) => {
             <img
                 className="avatar"
                 src={student.imgURL ? student.imgURL : DEFAULT_AVATAR[student.gender]}
-                alt="" /* Decorative element only! */
+                alt=""
                 // if imageURL fails to load
                 onError= {(e) => {
                     const target = e.currentTarget;

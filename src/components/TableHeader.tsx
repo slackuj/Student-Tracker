@@ -17,14 +17,14 @@ const TableHeader = ({
 
     return (
         <>
-            <div className="grid-row header" key={crypto.randomUUID()}>
+            <div className="grid-row header" >
         <div><input
                         type="checkbox"
                         checked={allChecked}
                         onChange={handleShouldDeleteAll}
                     /></div>
             {headers.map(header => (
-                    <div>{header}</div>
+                    <div key={crypto.randomUUID()}>{header}</div>
             ))}
             </div>
         </>

@@ -5,18 +5,17 @@
 }
 
 .avatar {
-    width: 32px; /* Fixed size for table precision */
-    height: 32px; /* Fixed size for table precision */
-    border-radius: 50%; /* Perfect circle */
-    object-fit: cover; /* Prevents image distortion */
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
     border: 1px solid #e5e7eb;
     background-color: #f3f4f6;
-    flex-shrink: 0; /* Prevents the avatar from shrinking in tight columns */
+    flex-shrink: 0;
 }
 
-/* Updated user-name to match the size of other row elements */
 .user-name {
-    font-size: 0.95rem; /* Matches .grid-row div for uniformity */
+    font-size: 0.95rem;
     font-weight: 500;
     color: #111827;
 }

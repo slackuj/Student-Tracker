@@ -8,7 +8,11 @@ interface HeaderProps {
 const Header = ({title} : HeaderProps) => {
     return (
         <header className="app-header">
-            <img className="favicon" src={favicon}/> <span className="header__title">{title}</span>
+            <img
+                className="favicon"
+                src={favicon}
+                alt=""
+            /> <span className="header__title">{title}</span>
         </header>
     )
 }

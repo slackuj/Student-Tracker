@@ -24,7 +24,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
 
     return ReactDOM.createPortal(
         <div className="modal-overlay" onClick={onClose}>
-            {/* stopPropagation prevents clicking the content from closing the modal */}
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
                     <h2>{title}</h2>

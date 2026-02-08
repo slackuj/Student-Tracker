@@ -1,0 +1,25 @@
+.student-deletion-form {
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.student-deletion-form .form-group {
+    font-size: 1.1rem;
+    color: #334155;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.btn--danger-confirm {
+    background-color: #ef4444;
+    color: white;
+}
+
+.btn--danger-confirm:hover {
+    background-color: #dc2626;
+}
+
+.student-deletion-form .form-actions {
+    justify-content: center;
+    border-top: none;
+}

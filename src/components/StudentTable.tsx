@@ -26,7 +26,6 @@ const StudentTable = ({
                 handleShouldDeleteAll={handleShouldDeleteAll}
                 allChecked={allChecked}
             />
-            {/*<DataRows row={}/>*/}
             <DataRows
                 dataRows={dataRows}
                 handleShouldDelete={handleShouldDelete}
