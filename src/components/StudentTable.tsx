@@ -8,14 +8,29 @@ export const headers: string[] = ["Name", "Roll Number", "Grade", "Contact Numbe
 
 interface dataRowsProps {
     dataRows: DataRowsProps[];
+    handleShouldDelete: (rollNumber: number) => void;
+    handleShouldDeleteAll: () => void;
+    allChecked: boolean;
 }
 
-const StudentTable = ({dataRows}: dataRowsProps) =>{
+const StudentTable = ({
+                          dataRows,
+                          handleShouldDelete,
+                          handleShouldDeleteAll,
+                          allChecked
+                      }: dataRowsProps) =>{
     return (
         <div className="grid-table">
-            <TableHeader headers={headers} />
+            <TableHeader
+                headers={headers}
+                handleShouldDeleteAll={handleShouldDeleteAll}
+                allChecked={allChecked}
+            />
             {/*<DataRows row={}/>*/}
-            <DataRows dataRows={dataRows} />
+            <DataRows
+                dataRows={dataRows}
+                handleShouldDelete={handleShouldDelete}
+            />
         </div>
     );
 };

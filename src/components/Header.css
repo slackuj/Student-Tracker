@@ -1,9 +1,16 @@
-.header {
+.app-header {
+    display: flex;
     color: blueviolet;
-    text-align: center;
+    align-items: center;
+    gap: 1rem;
+    text-transform: uppercase;
 }
 
 .header__title {
     font-size: 2rem;
     font-weight: bold;
+}
+.favicon{
+    height: 40px;
+    width: 40px;
 }

@@ -11,7 +11,7 @@
     justify-content: flex-end;
     align-items: stretch; /* Makes content fill full height */
     z-index: 1000;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(1px);
 }
 
 .modal-content {

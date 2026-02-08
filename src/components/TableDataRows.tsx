@@ -12,19 +12,25 @@ export interface DataRowsProps {
     contactNumber: number;
     gender: Gender;
     imgURL?: string;
+    shouldDelete: boolean;
 }
 interface dataRowsProps {
     dataRows: DataRowsProps[];
+    handleShouldDelete: (rollNumber: number) => void;
 }
 
 
-const DataRows = ({dataRows}: dataRowsProps) => {
+const DataRows = ({dataRows, handleShouldDelete}: dataRowsProps) => {
 
     return (
         <>
             {dataRows.map(dataRow => (
                 <div className="grid-row" key={dataRow.rollNumber}>
-                    <div><input type="checkbox"/></div>
+                    <div><input
+                        type="checkbox"
+                        checked={dataRow.shouldDelete}
+                        onChange={() => handleShouldDelete(dataRow.rollNumber)}
+                    /></div>
                     {/* Column 1: Avatar + Name */}
                     <div className="avatar-container">
                         <Avatar student={dataRow}/>

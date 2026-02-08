@@ -11,6 +11,8 @@ interface ActionBarProps {
     handleAddGender: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     handleAddImageURL: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleSubmitForm: (e: React.FormEvent<HTMLFormElement>) => void;
+    isRmvBtnDisabled: boolean;
+    handleDeleteForm: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const ActionBar = ({
@@ -20,31 +22,40 @@ const ActionBar = ({
     handleAddContactNumber,
     handleAddGender,
     handleAddImageURL,
-    handleSubmitForm
-                   }: ActionBarProps) => {
-    const [isModalOpen, setModalOpen] = useState(false);
+    handleSubmitForm,
+    isRmvBtnDisabled,
+    handleDeleteForm
+}: ActionBarProps) => {
+
+    const [isFileModalOpen, setFileModalOpen] = useState(false);
+    const [isDeletionModalOpen, setDeletionModalOpen] = useState(false);
 
     return (
         <div className="action-bar">
-            <button className="btn btn--primary" onClick={() => setModalOpen(true)}>
+            <button className="btn btn--primary" onClick={() => setFileModalOpen(true)}>
                 <FaPlus className="icon" /> New Student
             </button>
 
             {/* Add other buttons here */}
-            <button className="btn btn--danger" disabled>
+            <button className="btn btn--danger"
+                    disabled={isRmvBtnDisabled}
+                    onClick={() => setDeletionModalOpen(true)}
+            >
                 <FaTimes className="icon" /> Remove Student
             </button>
-            <button className="btn btn--secondary">
+            <button className="btn btn--secondary"
+                    onClick={() => window.location.reload()}
+            >
                 <FaSyncAlt className="icon" /> Refresh
             </button>
 
             <Modal
-                isOpen={isModalOpen}
-                onClose={() => setModalOpen(false)}
+                isOpen={isFileModalOpen}
+                onClose={() => setFileModalOpen(false)}
                 title="Register New Student"
             >
                 <form className="student-form" onSubmit={(e) => {
-                    setModalOpen(false);
+                    setFileModalOpen(false);
                     handleSubmitForm(e);}}>
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
@@ -115,7 +126,36 @@ const ActionBar = ({
                                 className="btn btn--primary"
                         >Save Student</button>
                         <button type="button" className="btn btn--secondary"
-                                onClick={() => setModalOpen(false)}
+                                onClick={() => setFileModalOpen(false)}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </Modal>
+
+            <Modal
+                isOpen={isDeletionModalOpen}
+                onClose={()=>setDeletionModalOpen(false)}
+                title="Removing Students"
+                >
+                <form className="student-deletion-form"
+                      onSubmit={(e) => {
+                          setDeletionModalOpen(false);
+                          handleDeleteForm(e);}}
+                >
+                    <div className="form-group">
+                        Remove the selected student(s) ?
+                    </div>
+                    <div className="form-actions">
+                        <button type="submit"
+                                className="btn btn--primary"
+                        >
+                            Remove
+                        </button>
+                        <button type="button"
+                                className="btn btn--secondary"
+                                onClick={() => setDeletionModalOpen(false)}
                         >
                             Cancel
                         </button>

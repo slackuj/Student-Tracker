@@ -12,28 +12,32 @@ function App() {
             rollNumber: 721036,
             grade: 'A',
             contactNumber: 9812345678,
-            gender: 'Male'
+            gender: 'Male',
+            shouldDelete: false
         },
         {
             name: "Rabin Pandit",
             rollNumber: 721037,
             grade: 'A',
             contactNumber: 9812345678,
-            gender: 'Male'
+            gender: 'Male',
+            shouldDelete: false
         },
         {
             name: "Rabin Pandit",
             rollNumber: 721038,
             grade: 'A',
             contactNumber: 9812345678,
-            gender: 'Male'
+            gender: 'Male',
+            shouldDelete: false
         },
         {
             name: "Rabin Pandit",
             rollNumber: 721039,
             grade: 'A',
             contactNumber: 9812345678,
-            gender: 'Male'
+            gender: 'Male',
+            shouldDelete: false
         }
     ];
 
@@ -52,6 +56,9 @@ function App() {
     const [contactNumber, setContactNumber] = useState<number>(9800000000);
     const [gender, setGender] = useState<Gender>("Male");
     const [imageURL, setImageURL] = useState("");
+
+    //const [shouldDelete, setShouldDelete] = useState<boolean>(false);
+    //const [isRmvBtnDisabled, setIsRmvBtnDisabled] = useState<boolean>(true);
 
     /*---------------------------------------------------------*/
     /* ----- CALLBACK HANDLERS FOR MODALS in <ActionBar> ----- */
@@ -87,7 +94,8 @@ function App() {
             grade: grade,
             contactNumber: contactNumber,
             gender: gender,
-            imgURL: imageURL
+            imgURL: imageURL,
+            shouldDelete: false
         };
 
         setDataRows(prev => [...prev, newDataRow]);
@@ -100,6 +108,44 @@ function App() {
 
 
     };
+
+    /*const handleDisablingRmvBtn = () => {
+        if (dataRows.some(dataRow => dataRow.shouldDelete)){
+            setIsRmvBtnDisabled(false);
+        }
+        else {
+            setIsRmvBtnDisabled(true);
+        }
+    };*/
+
+    /* --------------------------------------------------------------------------- */
+    /* ------------------ L O G I C    F O R    D E L E T I O N ------------------ */
+    /* --------------------------------------------------------------------------- */
+
+    const handleShouldDelete = (rollNumber: number) => {
+        setDataRows(prev => prev.map(dataRow =>
+                dataRow.rollNumber === rollNumber ? {...dataRow, shouldDelete: !dataRow.shouldDelete} : dataRow
+            ));
+    };
+
+    const allChecked = dataRows.length > 0 ? dataRows.every(dataRow => dataRow.shouldDelete) : false;
+
+    const handleShouldDeleteALL = () => {
+        setDataRows(prev => prev.map(dataRow => (
+            { ...dataRow, shouldDelete: !allChecked }
+            )
+        ));
+    };
+
+    const handleDeletion = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const updatedDataRows: DataRowsProps[] = dataRows.filter(dataRow => !dataRow.shouldDelete);
+        setDataRows(updatedDataRows);
+    };
+
+    const shouldDisableRmvBtn = !dataRows.some(dataRow => dataRow.shouldDelete);
+
   return (
       <div className="container">
           {/*<h1>Student Tracker</h1>
@@ -116,8 +162,15 @@ function App() {
               handleAddGender={handleGender}
               handleAddImageURL={handleImageURL}
               handleSubmitForm={handleDataRows}
+              isRmvBtnDisabled={shouldDisableRmvBtn}
+              handleDeleteForm={handleDeletion}
           />
-          <StudentTable dataRows={dataRows} />
+          <StudentTable
+              dataRows={dataRows}
+              handleShouldDelete={handleShouldDelete}
+              handleShouldDeleteAll={handleShouldDeleteALL}
+              allChecked={allChecked}
+          />
 
       </div>
   );

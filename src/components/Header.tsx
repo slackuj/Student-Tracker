@@ -1,4 +1,5 @@
 import './Header.css';
+import favicon from '../assets/tracker.svg';
 
 interface HeaderProps {
     title: string;
@@ -6,8 +7,8 @@ interface HeaderProps {
 
 const Header = ({title} : HeaderProps) => {
     return (
-        <header className="header">
-            <h1 className="header__title">{title}</h1>
+        <header className="app-header">
+            <img className="favicon" src={favicon}/> <span className="header__title">{title}</span>
         </header>
     )
 }
