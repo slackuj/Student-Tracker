@@ -18,18 +18,7 @@ interface ActionBarProps {
     handleNewStudentValidation: () => string;
 }
 
-const ActionBar = ({
-    handleAddName,
-    handleAddRollNumber,
-    handleAddGrade,
-    handleAddContactNumber,
-    handleAddGender,
-    handleAddImageURL,
-    handleSubmitForm,
-    isRmvBtnDisabled,
-    handleDeleteForm,
-    handleNewStudentValidation
-}: ActionBarProps) => {
+const ActionBar = (props: ActionBarProps) => {
 
     const [isFileModalOpen, setFileModalOpen] = useState(false);
     const [isDeletionModalOpen, setDeletionModalOpen] = useState(false);
@@ -42,7 +31,7 @@ const ActionBar = ({
 
             {/* Add other buttons here */}
             <button className="btn btn--danger"
-                    disabled={isRmvBtnDisabled}
+                    disabled={props.isRmvBtnDisabled}
                     onClick={() => setDeletionModalOpen(true)}
             >
                 <FaTimes className="icon" /> Remove Student
@@ -60,9 +49,9 @@ const ActionBar = ({
             >
                 <form className="student-form" onSubmit={(e) => {
                     e.preventDefault();
-                    if(handleNewStudentValidation() === 'validated') {
+                    if(props.handleNewStudentValidation() === 'validated') {
                     setFileModalOpen(false);
-                    handleSubmitForm(e);}}}>
+                    props.handleSubmitForm(e);}}}>
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input className="student-form__name"
@@ -70,7 +59,7 @@ const ActionBar = ({
                                type="text"
                                placeholder="enter name ..."
                                required
-                               onChange={handleAddName}
+                               onChange={props.handleAddName}
                         />
                     </div>
                     <div className="form-group">
@@ -81,7 +70,7 @@ const ActionBar = ({
                             type="number"
                             placeholder="721028"
                             required
-                            onChange={handleAddRollNumber}
+                            onChange={props.handleAddRollNumber}
                         />
                     </div>
                     <div className="form-group">
@@ -91,7 +80,7 @@ const ActionBar = ({
                                type="text"
                                placeholder="A"
                                required
-                               onChange={handleAddGrade}
+                               onChange={props.handleAddGrade}
                         />
                     </div>
                     <div className="form-group">
@@ -102,7 +91,7 @@ const ActionBar = ({
                             type="number"
                             placeholder="9800000000"
                             required
-                            onChange={handleAddContactNumber}
+                            onChange={props.handleAddContactNumber}
                         />
                     </div>
                     <div className="form-group">
@@ -111,7 +100,7 @@ const ActionBar = ({
                             id="gender"
                             className="student-form__gender"
                             value="Male"
-                            onChange={handleAddGender}
+                            onChange={props.handleAddGender}
                         >
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -124,7 +113,7 @@ const ActionBar = ({
                                id="imgURL"
                                type="text"
                                placeholder="enter imageURL"
-                               onChange={handleAddImageURL}
+                               onChange={props.handleAddImageURL}
                         />
                     </div>
                     <div className="form-actions">
@@ -148,7 +137,7 @@ const ActionBar = ({
                 <form className="student-deletion-form"
                       onSubmit={(e) => {
                           setDeletionModalOpen(false);
-                          handleDeleteForm(e);}}
+                          props.handleDeleteForm(e);}}
                 >
                     <div className="form-group">
                         Remove the selected student(s) ?

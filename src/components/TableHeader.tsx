@@ -6,12 +6,8 @@ interface TableHeaderProps {
     allChecked: boolean;
 }
 
-const TableHeader = ({
-                         headers,
-                         handleShouldDeleteAll,
-                         allChecked
-                     }: TableHeaderProps) => {
-    if (headers.length === 0){
+const TableHeader = (props: TableHeaderProps) => {
+    if (props.headers.length === 0){
         return (<></>);
     }
 
@@ -20,10 +16,10 @@ const TableHeader = ({
             <div className="grid-row header" >
         <div><input
                         type="checkbox"
-                        checked={allChecked}
-                        onChange={handleShouldDeleteAll}
+                        checked={props.allChecked}
+                        onChange={props.handleShouldDeleteAll}
                     /></div>
-            {headers.map(header => (
+            {props.headers.map(header => (
                     <div key={crypto.randomUUID()}>{header}</div>
             ))}
             </div>

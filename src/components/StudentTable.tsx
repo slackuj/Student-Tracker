@@ -13,22 +13,17 @@ interface dataRowsProps {
     allChecked: boolean;
 }
 
-const StudentTable = ({
-                          dataRows,
-                          handleShouldDelete,
-                          handleShouldDeleteAll,
-                          allChecked
-                      }: dataRowsProps) =>{
+const StudentTable = (props: dataRowsProps) =>{
     return (
         <div className="grid-table">
             <TableHeader
                 headers={headers}
-                handleShouldDeleteAll={handleShouldDeleteAll}
-                allChecked={allChecked}
+                handleShouldDeleteAll={props.handleShouldDeleteAll}
+                allChecked={props.allChecked}
             />
             <DataRows
-                dataRows={dataRows}
-                handleShouldDelete={handleShouldDelete}
+                dataRows={props.dataRows}
+                handleShouldDelete={props.handleShouldDelete}
             />
         </div>
     );
