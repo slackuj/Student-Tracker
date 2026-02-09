@@ -21,7 +21,6 @@
     border: 1px solid transparent;
 }
 
-/* Primary - Cyan Theme */
 .btn--primary {
     background-color: #0891b2;
     color: white;
@@ -31,7 +30,6 @@
     background-color: #0e7490;
 }
 
-/* Secondary - Matches your Header's blueviolet */
 .btn--secondary {
     background-color: white;
     color: blueviolet;
@@ -42,7 +40,6 @@
     background-color: #f5f3ff;
 }
 
-/* Danger/Disabled States */
 .btn--danger:disabled {
     background-color: #f1f5f9;
     color: #94a3b8;

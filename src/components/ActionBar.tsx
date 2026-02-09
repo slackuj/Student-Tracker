@@ -29,7 +29,6 @@ const ActionBar = (props: ActionBarProps) => {
                 <FaPlus className="icon" /> New Student
             </button>
 
-            {/* Add other buttons here */}
             <button className="btn btn--danger"
                     disabled={props.isRmvBtnDisabled}
                     onClick={() => setDeletionModalOpen(true)}

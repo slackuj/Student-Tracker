@@ -1,5 +1,5 @@
-import React, {type ReactNode, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import {type ReactNode, useEffect } from 'react';
+import {createPortal} from 'react-dom';
 import { FaTimes } from 'react-icons/fa';
 import './Modal.css';
 
@@ -10,7 +10,7 @@ interface ModalProps {
     children: ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
+const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
     // Close modal on 'Escape' key press
     useEffect(() => {
         const handleEsc = (event: KeyboardEvent) => {
@@ -22,7 +22,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
 
     if (!isOpen) return null;
 
-    return ReactDOM.createPortal(
+    // createPortal takes two argument: (JSX, DOM node)
+    // takes JSX and renders it inside the DOM node
+    return createPortal(
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
