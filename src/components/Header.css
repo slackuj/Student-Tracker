@@ -1,13 +1,14 @@
 .app-header {
     display: flex;
-    color: blueviolet;
+    color: white;
     align-items: center;
     gap: 1rem;
     text-transform: uppercase;
+    padding: 10px 20px;
 }
 
 .header__title {
-    font-size: 2rem;
+    font-size: xx-large;
     font-weight: bold;
 }
 .favicon{

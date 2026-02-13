@@ -1,6 +1,7 @@
 import './TableDataRows.css';
 import './Table.css';
 import Avatar from "./Avatar.tsx";
+import {NavLink} from "react-router";
 
 export type Gender = "Male" | "Female" | "Other";
 
@@ -32,13 +33,10 @@ const DataRows = ({dataRows, handleShouldDelete}: dataRowsProps) => {
                     /></div>
                     {/* Second Column: Avatar + Name */}
                     <div className="avatar-container">
+                    <NavLink to="/student/profile" className="student-profile">
                         <Avatar student={dataRow}/>
-                        {/*<img
-                            className="avatar"
-                            src={profileMale}
-                            alt="" /* Decorative element only! /
-                        />*/}
                         <span className="user-name">{dataRow.name}</span>
+                    </NavLink>
                     </div>
 
                     {/* Remaining Columns */}

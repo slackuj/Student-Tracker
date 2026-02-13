@@ -6,16 +6,11 @@ import './AddNewStudent.css';
 import './DeletionModal.css';
 
 interface ActionBarProps {
-    handleAddName: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleAddRollNumber: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleAddGrade: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleAddContactNumber: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleAddGender: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-    handleAddImageURL: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleSubmitForm: (e: React.FormEvent<HTMLFormElement>) => void;
     isRmvBtnDisabled: boolean;
     handleDeleteForm: (e: React.FormEvent<HTMLFormElement>) => void;
-    handleNewStudentValidation: () => string;
+    handleStudentValidation: () => string;
+    handleChange: (e: React.ChangeEvent<HTMLElement>) => void;
 }
 
 const ActionBar = (props: ActionBarProps) => {
@@ -48,17 +43,18 @@ const ActionBar = (props: ActionBarProps) => {
             >
                 <form className="student-form" onSubmit={(e) => {
                     e.preventDefault();
-                    if(props.handleNewStudentValidation() === 'validated') {
+                    if(props.handleStudentValidation() === 'validated') {
                     setFileModalOpen(false);
                     props.handleSubmitForm(e);}}}>
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input className="student-form__name"
                                id="name"
+                               name="name"
                                type="text"
                                placeholder="enter name ..."
                                required
-                               onChange={props.handleAddName}
+                               onChange={props.handleChange}
                         />
                     </div>
                     <div className="form-group">
@@ -66,20 +62,22 @@ const ActionBar = (props: ActionBarProps) => {
                         <input
                             className="student-form__roll"
                             id="rollNumber"
+                            name="rollNumber"
                             type="number"
                             placeholder="721028"
                             required
-                            onChange={props.handleAddRollNumber}
+                            onChange={props.handleChange}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="grade">Grade</label>
                         <input className="student-form__grade"
                                id="grade"
+                               name="grade"
                                type="text"
                                placeholder="A"
                                required
-                               onChange={props.handleAddGrade}
+                               onChange={props.handleChange}
                         />
                     </div>
                     <div className="form-group">
@@ -87,19 +85,21 @@ const ActionBar = (props: ActionBarProps) => {
                         <input
                             className="student-form__contact"
                             id="contactNumber"
+                            name="contactNumber"
                             type="number"
                             placeholder="9800000000"
                             required
-                            onChange={props.handleAddContactNumber}
+                            onChange={props.handleChange}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="gender">Gender</label>
                         <select
                             id="gender"
+                            name="gender"
                             className="student-form__gender"
                             value="Male"
-                            onChange={props.handleAddGender}
+                            onChange={props.handleChange}
                         >
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -110,9 +110,10 @@ const ActionBar = (props: ActionBarProps) => {
                         <label htmlFor="imgURL">ImageURL (optional)</label>
                         <input className="student-form__img"
                                id="imgURL"
+                               name="imgURL"
                                type="text"
                                placeholder="enter imageURL"
-                               onChange={props.handleAddImageURL}
+                               onChange={props.handleChange}
                         />
                     </div>
                     <div className="form-actions">

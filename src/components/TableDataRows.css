@@ -1,7 +1,35 @@
-.avatar-container {
-    display: flex;
+/*.avatar-container {
+
+}
+
+.student-profile:hover {
+    background-color: lightgray;
     align-items: center;
     gap: 12px;
+}*/
+
+.student-profile {
+    display: flex;          /* Places children side-by-side */
+    align-items: center;    /* Centers them vertically relative to each other */
+    gap: 12px;              /* Creates consistent space between avatar and name */
+    text-decoration: none;  /* Removes the default link underline */
+    color: inherit;         /* Keeps the text color from turning "link blue" */
+    padding: 8px;           /* Optional: gives the link some "hit area" */
+    border-radius: 8px;     /* Optional: for a nice hover shape */
+    transition: background-color 0.2s ease;
+}
+
+/* Optional: Add a subtle background change on hover */
+.student-profile:hover {
+    background-color: rgba(0, 139, 139, 0.1); /* Very light darkcyan tint */
+}
+
+.user-name {
+    font-weight: 500;
+    font-size: 1rem;
+    white-space: nowrap;    /* Prevents the name from wrapping to a second line */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." if the name is too long */
 }
 
 .avatar {
@@ -14,8 +42,9 @@
     flex-shrink: 0;
 }
 
+/*
 .user-name {
     font-size: 0.95rem;
     font-weight: 500;
     color: #111827;
-}
+}*/

@@ -1,0 +1,141 @@
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.profile-container {
+    background-color: #F5F5F5;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.profile-nav {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.profile-nav a {
+    text-decoration: none;
+    color: #555;
+    padding: 10px 20px;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+    font-weight: bold;
+}
+
+.profile-nav a.active {
+    color: #0078d4;
+    border-bottom: 2px solid #0078d4;
+}
+
+.profile-content h2 {
+    font-size: 0.8em;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.user-info-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-avatar {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.avatar-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #0078d4;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.avatar-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    color: #555;
+    font-size: 0.8em;
+}
+
+.user-details h1 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.user-details .email {
+    margin: 5px 0 0;
+    color: #666;
+}
+
+.user-details .user-type {
+    color: #888;
+    font-size: 0.9em;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+
+.user-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 50px;
+}
+
+.grid-item .label {
+    font-size: 0.9em;
+    color: #888;
+}
+
+.grid-item .value,
+.value-with-icon .value,
+.value-link {
+    font-size: 1em;
+    font-weight: normal;
+    color: #333;
+    margin-top: 5px;
+}
+
+.value-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.copy-icon {
+    color: #0078d4;
+    cursor: pointer;
+}
+
+.value-link {
+    color: #0078d4;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.value-link2 {
+    color: #0078d4;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 40px;
+}

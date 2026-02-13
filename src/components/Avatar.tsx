@@ -3,6 +3,7 @@ import type {Gender} from "./TableDataRows.tsx";
 import profileMale from "../assets/profile-male.svg";
 import profileFemale from "../assets/profile-female.svg";
 import profileOther from "../assets/profile-other.svg";
+import {NavLink} from "react-router";
 
 interface Avatar{
     student: DataRowsProps;

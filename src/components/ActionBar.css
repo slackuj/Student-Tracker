@@ -2,8 +2,7 @@
     display: flex;
     gap: 12px;
     padding: 6px;
-    background-color: #f8fafc; /* Subtle off-white */
-    border-radius: 8px;
+    background-color: #ecfeff; /* Subtle off-white */
     margin-top: 20px;
     align-items: center;
 }
