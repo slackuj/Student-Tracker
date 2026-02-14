@@ -4,7 +4,7 @@ import ActionBar from "../components/ActionBar.tsx";
 import SearchBar from "../components/SearchBar.tsx";
 import React, {useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
-import useStudentForm from "../hooks/useStudentForm.tsx";
+import useStudent from "../hooks/useStudent.tsx";
 import type {DataRowsProps} from "../components/TableDataRows.tsx";
 
 interface StudentsProps {
@@ -22,7 +22,7 @@ const Students = ({dataRows, setDataRows}: StudentsProps) => {
         handleShouldDelete,
         handleShouldDeleteALL,
         handleDeletion
-    } = useStudentForm(dataRows, setDataRows);
+    } = useStudent(dataRows, setDataRows);
 
 
 

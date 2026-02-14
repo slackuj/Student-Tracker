@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import type {DataRowsProps} from "../components/TableDataRows.tsx";
 import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
 
-const useStudentForm = (dataRows: DataRowsProps[],setDataRows:  React.Dispatch<React.SetStateAction<DataRowsProps[]>>) => {
+const useStudent = (dataRows: DataRowsProps[], setDataRows:  React.Dispatch<React.SetStateAction<DataRowsProps[]>>) => {
 
 
     /* ---------------- LIFTING STATE UP ---------------------------- */
@@ -15,7 +15,7 @@ const useStudentForm = (dataRows: DataRowsProps[],setDataRows:  React.Dispatch<R
     /*                needs to use the states !!!                     */
 
 
-    const [form, setForm] = useState<DataRowsProps>({
+    const [newStudent, setNewStudent] = useState<DataRowsProps>({
         name: '',
         rollNumber: 721028,
         grade: 'A',
@@ -37,7 +37,7 @@ const useStudentForm = (dataRows: DataRowsProps[],setDataRows:  React.Dispatch<R
         const target = e.target as HTMLInputElement | HTMLSelectElement;
         const {name, value} = target;
 
-        setForm(prev => ({
+        setNewStudent(prev => ({
             ...prev,
             [name]: name === "rollNumber" || name === "contactNumber" ? Number(value) : value
         }));
@@ -47,20 +47,20 @@ const useStudentForm = (dataRows: DataRowsProps[],setDataRows:  React.Dispatch<R
     const handleStudentValidation = (): string => {
 
         // check for duplicate roll-number
-        const duplicateRoll = dataRows.some(dataRow => dataRow.rollNumber === form.rollNumber);
+        const duplicateRoll = dataRows.some(dataRow => dataRow.rollNumber === newStudent.rollNumber);
         if (duplicateRoll) {
-            toast.error(`ERROR: Student with roll number: ${form.rollNumber} already exists`);
+            toast.error(`ERROR: Student with roll number: ${newStudent.rollNumber} already exists`);
             return 'error';
         }
 
         // validate roll-number
-        if (form.rollNumber === undefined || isNaN(form.rollNumber) || form.rollNumber <= 0) {
+        if (newStudent.rollNumber === undefined || isNaN(newStudent.rollNumber) || newStudent.rollNumber <= 0) {
             toast.error(`ERROR: Invalid Roll Number`);
             return 'error';
         }
 
         // validate contact-number
-        if (form.contactNumber === undefined || isNaN(form.contactNumber) || form.contactNumber <= 0) {
+        if (newStudent.contactNumber === undefined || isNaN(newStudent.contactNumber) || newStudent.contactNumber <= 0) {
             toast.error(`ERROR: Invalid Contact Number`);
             return 'error';
         }
@@ -70,20 +70,20 @@ const useStudentForm = (dataRows: DataRowsProps[],setDataRows:  React.Dispatch<R
     const handleDataRows = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        // perform form validation later
+        // perform newStudent validation later
 
         const newDataRow: DataRowsProps = {
-            name: form.name,
-            rollNumber: form.rollNumber,
-            grade: form.grade,
-            contactNumber: form.contactNumber,
-            gender: form.gender,
-            imgURL: form.imgURL,
+            name: newStudent.name,
+            rollNumber: newStudent.rollNumber,
+            grade: newStudent.grade,
+            contactNumber: newStudent.contactNumber,
+            gender: newStudent.gender,
+            imgURL: newStudent.imgURL,
             shouldDelete: false
         };
 
         setDataRows(prev => [...prev, newDataRow]);
-        setForm({
+        setNewStudent({
             name: '',
             rollNumber: 721028,
             grade: 'A',
@@ -121,6 +121,24 @@ const useStudentForm = (dataRows: DataRowsProps[],setDataRows:  React.Dispatch<R
     };
 
 
+    /* ---------------------------------------------------------------------------- */
+    /*   L O G I C    F O R   H A N D L I N G    E X I S T I N G    S T U D E N T S */
+    /* ---------------------------------------------------------------------------- */
+
+   const getStudentProps = (rollNumber: number) => {
+
+       return useMemo(() => {
+           if (dataRows) {
+               /*console.log('returning null from here');
+               console.log(rollNumber);
+               console.log(dataRows);*/
+               return dataRows.find(dataRow => dataRow.rollNumber === rollNumber) ?? null;
+           }
+           /*console.log('returning null');*/
+           return null;
+       }, [rollNumber, dataRows]);
+   };
+
         return {
             handleChange,
             handleStudentValidation,
@@ -128,8 +146,9 @@ const useStudentForm = (dataRows: DataRowsProps[],setDataRows:  React.Dispatch<R
             allChecked,
             handleShouldDelete,
             handleShouldDeleteALL,
-            handleDeletion
+            handleDeletion,
+            getStudentProps
         };
     };
 
-export default useStudentForm;
+export default useStudent;

@@ -7,8 +7,9 @@ import SideBar from "./components/SideBar.tsx";
 import {Route, Routes} from "react-router";
 import Students from "./pages/Students.tsx";
 import StudentProfile from "./pages/student/StudentProfile.tsx";
-import useStudentForm from "./hooks/useStudentForm.tsx";
+import useStudent from "./hooks/useStudent.tsx";
 import useStudents from "./hooks/useStudents.tsx";
+import Assignments from "./pages/student/Assignments.tsx";
 
 const App = () => {
 
@@ -17,7 +18,8 @@ const App = () => {
         allChecked,
         handleShouldDelete,
         handleShouldDeleteALL,
-    } = useStudentForm(dataRows, setDataRows);
+        getStudentProps
+    } = useStudent(dataRows, setDataRows);
 
   return (
       <>
@@ -51,8 +53,10 @@ const App = () => {
                           </div>
                           </>
                       }/>
-                      <Route path="/student/profile" element={<StudentProfile/>}/>
-                      <Route path="/student/assignments" element={<StudentProfile/>}/>
+                      <Route path="/student/:rollNumber" element={<StudentProfile
+                          getStudentProps={getStudentProps}
+                      />}/>
+                      <Route path="/student/:rollNumber/assignments" element={<Assignments/>}/>
                   </Routes>
 
 

@@ -33,7 +33,7 @@ const DataRows = ({dataRows, handleShouldDelete}: dataRowsProps) => {
                     /></div>
                     {/* Second Column: Avatar + Name */}
                     <div className="avatar-container">
-                    <NavLink to="/student/profile" className="student-profile">
+                    <NavLink to={`/student/${dataRow.rollNumber}`} className="student-profile">
                         <Avatar student={dataRow}/>
                         <span className="user-name">{dataRow.name}</span>
                     </NavLink>
