@@ -2,9 +2,9 @@ import '../../App.css'
 import './StudentProfile.css';
 import 'react-toastify/dist/ReactToastify.css';
 import StudentActionBar from "../../components/StudentActionBar.tsx";
-import StudentSideBar from "../../components/StudentSideBar.tsx";
 import type {DataRowsProps} from "../../components/TableDataRows.tsx";
 import {useParams} from "react-router";
+import Avatar from "../../components/Avatar.tsx";
 
 interface StudentProfileProps {
 
@@ -24,17 +24,15 @@ const StudentProfile = ({getStudentProps}: StudentProfileProps) => {
 
     return (
         <>
-            <StudentSideBar
-                rollNumber={Number(rollNumber)}
-            />
-            <div className="main-content">
                 <StudentActionBar/>
                 <div>
                     <div className="profile-container">
                         <div className="profile-content">
                             <div className="user-info-section">
                                 <div className="user-avatar">
-                                    <div className="avatar-circle">RB</div>
+                                    <div className="avatar-circle">
+                                        <Avatar student={student}/>
+                                    </div>
                                 </div>
                                 <div className="user-details">
                                     <h1>{student.name}</h1>
@@ -55,7 +53,7 @@ const StudentProfile = ({getStudentProps}: StudentProfileProps) => {
                                 <div className="grid-item">
                                     <div className="label">Contact Number</div>
                                     <div className="value-with-icon">
-                                        <span className="value">{student.rollNumber}</span>
+                                        <span className="value">{student.contactNumber}</span>
                                     </div>
                                 </div>
                                 <div className="grid-item">
@@ -74,7 +72,6 @@ const StudentProfile = ({getStudentProps}: StudentProfileProps) => {
                         </div>
                     </div>
                 </div>
-            </div>
         </>
     );
 

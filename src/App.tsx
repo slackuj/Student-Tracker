@@ -10,6 +10,7 @@ import StudentProfile from "./pages/student/StudentProfile.tsx";
 import useStudent from "./hooks/useStudent.tsx";
 import useStudents from "./hooks/useStudents.tsx";
 import Assignments from "./pages/student/Assignments.tsx";
+import StudentProfileLayout from "./pages/student/StudentProfileLayout.tsx";
 
 const App = () => {
 
@@ -53,10 +54,12 @@ const App = () => {
                           </div>
                           </>
                       }/>
-                      <Route path="/student/:rollNumber" element={<StudentProfile
+                      <Route path="/student/:rollNumber" element={<StudentProfileLayout/>}>
+                          <Route index element={<StudentProfile
                           getStudentProps={getStudentProps}
                       />}/>
-                      <Route path="/student/:rollNumber/assignments" element={<Assignments/>}/>
+                      <Route path="assignments" element={<Assignments/>}/>
+                      </Route>
                   </Routes>
 
 

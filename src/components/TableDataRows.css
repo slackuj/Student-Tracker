@@ -42,6 +42,16 @@
     flex-shrink: 0;
 }
 
+.avatar-circle .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #e5e7eb;
+    background-color: #f3f4f6;
+    flex-shrink: 0;
+}
+
 /*
 .user-name {
     font-size: 0.95rem;

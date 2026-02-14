@@ -1,4 +1,3 @@
-import StudentSideBar from "../../components/StudentSideBar.tsx";
 import './Assignments.css';
 import AssignmentActionBar from "../../components/AssignmentActionBar.tsx";
 import useAssignments from "../../hooks/useAssignments.tsx";
@@ -22,10 +21,6 @@ const AssignmentList = () => {
 
     return (
         <>
-            <StudentSideBar
-                rollNumber={Number(rollNumber)}
-            />
-            <div className="main-content">
                 <AssignmentActionBar/>
                 <div>
 
@@ -48,7 +43,6 @@ const AssignmentList = () => {
                     </ul>
             </div>
                 </div>
-            </div>
         </>
     )
 
