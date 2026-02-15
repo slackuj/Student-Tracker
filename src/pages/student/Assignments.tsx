@@ -19,7 +19,17 @@ const AssignmentList = () => {
     }
 
     if (!assignments || assignments.length === 0) {
-        return <div className="no-assignments">No assignments found.</div>;
+        return (
+                <>
+                    <AssignmentActionBar/>
+                    <div>
+
+                        <div className="student-assignments-list">
+                            <div className="no-assignments">No assignments found.</div>
+                    </div>
+                    </div>
+                </>
+        )
     }
 
     return (
