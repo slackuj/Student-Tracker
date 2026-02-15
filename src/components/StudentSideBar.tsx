@@ -2,17 +2,17 @@ import {NavLink} from "react-router";
 
 interface StudentSideBarProps {
 
-    rollNumber: number;
+    id: string;
 }
 
-const StudentSideBar = ({rollNumber}: StudentSideBarProps) => {
+const StudentSideBar = ({id}: StudentSideBarProps) => {
     return (
         <div className="sidebar">
             <ul>
-                <NavLink to={`/student/${rollNumber}`} end>
+                <NavLink to={`/student/${id}`} end>
                     <li>Overview</li>
                 </NavLink>
-                <NavLink to={`/student/${rollNumber}/assignments`}>
+                <NavLink to={`/student/${id}/assignments`}>
                     <li>Assignments</li>
                 </NavLink>
             </ul>

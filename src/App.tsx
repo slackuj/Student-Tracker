@@ -19,7 +19,11 @@ const App = () => {
         allChecked,
         handleShouldDelete,
         handleShouldDeleteALL,
-        getStudentProps
+        handleDeletion,
+        getStudentProps,
+        setStudentProps,
+        handleUpdateValidation,
+        handleDeletionByID
     } = useStudent(dataRows, setDataRows);
 
   return (
@@ -54,9 +58,13 @@ const App = () => {
                           </div>
                           </>
                       }/>
-                      <Route path="/student/:rollNumber" element={<StudentProfileLayout/>}>
+                      <Route path="/student/:id" element={<StudentProfileLayout/>}>
                           <Route index element={<StudentProfile
                           getStudentProps={getStudentProps}
+                          setStudentProps={setStudentProps}
+                          handleUpdateValidation={handleUpdateValidation}
+                          handleDeletion={handleDeletion}
+                          handleShouldDelete={handleDeletionByID}
                       />}/>
                       <Route path="assignments" element={<Assignments/>}/>
                       </Route>

@@ -8,7 +8,7 @@ export const headers: string[] = ["Name", "Roll Number", "Grade", "Contact Numbe
 
 interface dataRowsProps {
     dataRows: DataRowsProps[];
-    handleShouldDelete: (rollNumber: number) => void;
+    handleShouldDelete: (id: string) => void;
     handleShouldDeleteAll: () => void;
     allChecked: boolean;
 }

@@ -17,7 +17,7 @@ const Students = ({dataRows, setDataRows}: StudentsProps) => {
     const {
         handleChange,
         handleStudentValidation,
-        handleDataRows,
+        handleNewStudent,
         allChecked,
         handleShouldDelete,
         handleShouldDeleteALL,
@@ -46,9 +46,9 @@ const Students = ({dataRows, setDataRows}: StudentsProps) => {
         <>
             <ActionBar
                 handleChange={handleChange}
-                handleSubmitForm={handleDataRows}
+                handleNewStudent={handleNewStudent}
                 isRmvBtnDisabled={shouldDisableRmvBtn}
-                handleDeleteForm={handleDeletion}
+                handleDeletion={handleDeletion}
                 handleStudentValidation={handleStudentValidation}
             />
             <SearchBar

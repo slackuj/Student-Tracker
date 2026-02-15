@@ -8,13 +8,20 @@ import Avatar from "../../components/Avatar.tsx";
 
 interface StudentProfileProps {
 
-    getStudentProps: (rollNumber: number) => DataRowsProps | null;
+    getStudentProps: (id: string) => DataRowsProps | null;
+    setStudentProps: (students: DataRowsProps) => void;
+    handleUpdateValidation: (student: DataRowsProps) => string;
+    handleDeletion: () => void;
+    handleShouldDelete: (id: string) => void;
 }
 
-const StudentProfile = ({getStudentProps}: StudentProfileProps) => {
+const StudentProfile = (props: StudentProfileProps) => {
 
-    const {rollNumber} = useParams();
-    const student = getStudentProps(Number(rollNumber));
+    const {id} = useParams();
+    if (!id) {
+        return <div>Student not found.</div>
+    }
+    const student = props.getStudentProps(id);
 
     /*console.log('roll: ' + rollNumber)
     console.log(student);*/
@@ -24,7 +31,13 @@ const StudentProfile = ({getStudentProps}: StudentProfileProps) => {
 
     return (
         <>
-                <StudentActionBar/>
+                <StudentActionBar
+                    getStudentProps={props.getStudentProps}
+                    setStudentProps={props.setStudentProps}
+                    handleUpdateValidation={props.handleUpdateValidation}
+                    handleDeletion={props.handleDeletion}
+                    handleShouldDelete={props.handleShouldDelete}
+                />
                 <div>
                     <div className="profile-container">
                         <div className="profile-content">

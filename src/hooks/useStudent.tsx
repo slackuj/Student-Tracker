@@ -15,7 +15,8 @@ const useStudent = (dataRows: DataRowsProps[], setDataRows:  React.Dispatch<Reac
     /*                needs to use the states !!!                     */
 
 
-    const [newStudent, setNewStudent] = useState<DataRowsProps>({
+    const [Student, setStudent] = useState<DataRowsProps>({
+        id: '',
         name: '',
         rollNumber: 721028,
         grade: 'A',
@@ -37,7 +38,7 @@ const useStudent = (dataRows: DataRowsProps[], setDataRows:  React.Dispatch<Reac
         const target = e.target as HTMLInputElement | HTMLSelectElement;
         const {name, value} = target;
 
-        setNewStudent(prev => ({
+        setStudent(prev => ({
             ...prev,
             [name]: name === "rollNumber" || name === "contactNumber" ? Number(value) : value
         }));
@@ -47,43 +48,44 @@ const useStudent = (dataRows: DataRowsProps[], setDataRows:  React.Dispatch<Reac
     const handleStudentValidation = (): string => {
 
         // check for duplicate roll-number
-        const duplicateRoll = dataRows.some(dataRow => dataRow.rollNumber === newStudent.rollNumber);
+        const duplicateRoll = dataRows.some(dataRow => dataRow.rollNumber === Student.rollNumber);
         if (duplicateRoll) {
-            toast.error(`ERROR: Student with roll number: ${newStudent.rollNumber} already exists`);
+            toast.error(`ERROR: Student with roll number: ${Student.rollNumber} already exists`);
             return 'error';
         }
 
         // validate roll-number
-        if (newStudent.rollNumber === undefined || isNaN(newStudent.rollNumber) || newStudent.rollNumber <= 0) {
+        if (Student.rollNumber === undefined || isNaN(Student.rollNumber) || Student.rollNumber <= 0) {
             toast.error(`ERROR: Invalid Roll Number`);
             return 'error';
         }
 
         // validate contact-number
-        if (newStudent.contactNumber === undefined || isNaN(newStudent.contactNumber) || newStudent.contactNumber <= 0) {
+        if (Student.contactNumber === undefined || isNaN(Student.contactNumber) || Student.contactNumber <= 0) {
             toast.error(`ERROR: Invalid Contact Number`);
             return 'error';
         }
         return 'validated';
     };
 
-    const handleDataRows = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        // perform newStudent validation later
+    const handleNewStudent = () => {
 
         const newDataRow: DataRowsProps = {
-            name: newStudent.name,
-            rollNumber: newStudent.rollNumber,
-            grade: newStudent.grade,
-            contactNumber: newStudent.contactNumber,
-            gender: newStudent.gender,
-            imgURL: newStudent.imgURL,
+            id: crypto.randomUUID(),// to skip any cached id values ---> consider flushing Student state variables when user clicks cancel on modal forms !!!
+            name: Student.name,
+            rollNumber: Student.rollNumber,
+            grade: Student.grade,
+            contactNumber: Student.contactNumber,
+            gender: Student.gender,
+            imgURL: Student.imgURL,
             shouldDelete: false
         };
 
+        //setStudent( prev => ({...prev, id: crypto.randomUUID()}));
+
         setDataRows(prev => [...prev, newDataRow]);
-        setNewStudent({
+        setStudent({
+            id: '',
             name: '',
             rollNumber: 721028,
             grade: 'A',
@@ -98,9 +100,10 @@ const useStudent = (dataRows: DataRowsProps[], setDataRows:  React.Dispatch<Reac
     /* ------------------ L O G I C    F O R    D E L E T I O N ------------------ */
     /* --------------------------------------------------------------------------- */
 
-    const handleShouldDelete = (rollNumber: number) => {
+    const handleShouldDelete = (id: string) => {
+        console.log(`preparing to delete user ${id}`);
         setDataRows(prev => prev.map(dataRow =>
-            dataRow.rollNumber === rollNumber ? {...dataRow, shouldDelete: !dataRow.shouldDelete} : dataRow
+            dataRow.id === id ? {...dataRow, shouldDelete: !dataRow.shouldDelete} : dataRow
         ));
     };
 
@@ -113,41 +116,83 @@ const useStudent = (dataRows: DataRowsProps[], setDataRows:  React.Dispatch<Reac
         ));
     };
 
-    const handleDeletion = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const handleDeletion = () => {
 
+        console.log('handleDeletion called');
         const updatedDataRows: DataRowsProps[] = dataRows.filter(dataRow => !dataRow.shouldDelete);
         setDataRows(updatedDataRows);
     };
 
+    const handleDeletionByID = (id: string) => {
+        setDataRows(prev => prev.filter(student => student.id !== id));
+        toast.success("Student removed successfully",{
+            autoClose: 3000
+        });
+    };
 
     /* ---------------------------------------------------------------------------- */
     /*   L O G I C    F O R   H A N D L I N G    E X I S T I N G    S T U D E N T S */
     /* ---------------------------------------------------------------------------- */
 
-   const getStudentProps = (rollNumber: number) => {
+   const getStudentProps = (id: string) => {
 
        return useMemo(() => {
            if (dataRows) {
                /*console.log('returning null from here');
                console.log(rollNumber);
                console.log(dataRows);*/
-               return dataRows.find(dataRow => dataRow.rollNumber === rollNumber) ?? null;
+               return dataRows.find(dataRow => dataRow.id === id) ?? null;
            }
            /*console.log('returning null');*/
            return null;
-       }, [rollNumber, dataRows]);
+       }, [id, dataRows]);
    };
+
+    const handleUpdateValidation = (student: DataRowsProps): string => {
+
+        // check for duplicate roll-number
+        const duplicateRoll = dataRows.some(dataRow =>
+            dataRow.rollNumber === student.rollNumber && dataRow.id !== student.id);
+        if (duplicateRoll) {
+            toast.error(`ERROR: Student with roll number: ${student.rollNumber} already exists`);
+            return 'error';
+        }
+
+        // validate roll-number
+        if (student.rollNumber === undefined || isNaN(student.rollNumber) || student.rollNumber <= 0) {
+            toast.error(`ERROR: Invalid Roll Number`);
+            return 'error';
+        }
+
+        // validate contact-number
+        if (student.contactNumber === undefined || isNaN(student.contactNumber) || student.contactNumber <= 0) {
+            toast.error(`ERROR: Invalid Contact Number`);
+            return 'error';
+        }
+        return 'validated';
+    };
+
+    const setStudentProps = (student: DataRowsProps) => {
+
+        // UPDATING STUDENTS VIA EDITMODAL
+            if (dataRows) {
+                setDataRows(prev => prev.map(dataRow =>
+                    dataRow.id === student.id ? student : dataRow));
+            }
+    };
 
         return {
             handleChange,
             handleStudentValidation,
-            handleDataRows,
+            handleNewStudent,
             allChecked,
             handleShouldDelete,
             handleShouldDeleteALL,
             handleDeletion,
-            getStudentProps
+            getStudentProps,
+            setStudentProps,
+            handleUpdateValidation,
+            handleDeletionByID
         };
     };
 

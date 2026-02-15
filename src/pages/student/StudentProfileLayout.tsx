@@ -3,11 +3,14 @@ import { Outlet, useParams } from "react-router";
 import StudentSideBar from "../../components/StudentSideBar.tsx";
 
 const StudentProfileLayout = () => {
-    const { rollNumber } = useParams();
+    const { id } = useParams();
 
+    if (!id){
+        return <div>No student not found.</div>;
+    }
     return (
         <>
-            <StudentSideBar rollNumber={Number(rollNumber)} />
+            <StudentSideBar id={id} />
             <div className="main-content">
                 <Outlet />
             </div>

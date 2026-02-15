@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 interface Assignment {
     assignmentId: number;
-    rollNumber: number;
+    id: string;
     title: string;
     status: string;
     assignedDate: Date;
@@ -13,7 +13,7 @@ interface Assignment {
     receivedPoints: number;
 }
 
-const useAssignments = (rollNumber: number) => {
+const useAssignments = (id: string) => {
     const [assignments, setAssignments] = useState<Assignment[]>([]);// can we use localStorage to cache assignments !? --- TRY TO HANDLE LATER !!!
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -21,7 +21,7 @@ const useAssignments = (rollNumber: number) => {
         try {
             setLoading(true);
             const response = await fetch("https://raw.githubusercontent.com/slackuj/Glaty-Fake-API-Store/main/assignments.json");
-            const assignments = (await response.json() as Assignment[]).filter(assignment => assignment.rollNumber === rollNumber);
+            const assignments = (await response.json() as Assignment[]).filter(assignment => assignment.id === id);
             setAssignments(assignments);
         } catch (error) {
             console.error("Error fetching assignments:", error);

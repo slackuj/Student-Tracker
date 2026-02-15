@@ -6,6 +6,7 @@ import {NavLink} from "react-router";
 export type Gender = "Male" | "Female" | "Other";
 
 export interface DataRowsProps {
+    id: string;
     name: string;
     rollNumber: number;
     grade: string;
@@ -16,7 +17,7 @@ export interface DataRowsProps {
 }
 interface dataRowsProps {
     dataRows: DataRowsProps[];
-    handleShouldDelete: (rollNumber: number) => void;
+    handleShouldDelete: (id: string) => void;
 }
 
 
@@ -25,15 +26,15 @@ const DataRows = ({dataRows, handleShouldDelete}: dataRowsProps) => {
     return (
         <>
             {dataRows.map(dataRow => (
-                <div className="grid-row" key={dataRow.rollNumber}>
+                <div className="grid-row" key={dataRow.id}>
                     <div><input
                         type="checkbox"
                         checked={dataRow.shouldDelete}
-                        onChange={() => handleShouldDelete(dataRow.rollNumber)}
+                        onChange={() => handleShouldDelete(dataRow.id)}
                     /></div>
                     {/* Second Column: Avatar + Name */}
                     <div className="avatar-container">
-                    <NavLink to={`/student/${dataRow.rollNumber}`} className="student-profile">
+                    <NavLink to={`/student/${dataRow.id}`} className="student-profile">
                         <Avatar student={dataRow}/>
                         <span className="user-name">{dataRow.name}</span>
                     </NavLink>

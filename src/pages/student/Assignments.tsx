@@ -5,11 +5,14 @@ import {useParams} from "react-router";
 
 const AssignmentList = () => {
 
-    const {rollNumber} = useParams();
+    const {id} = useParams();
+    if (!id){
+        return <div>No assignments not found.</div>;
+    }
     const {
         assignments,
         loading
-    } = useAssignments(Number(rollNumber));
+    } = useAssignments(id);
 
     if (loading) {
         return <div className="loading">Loading...</div>;
