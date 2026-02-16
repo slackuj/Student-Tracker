@@ -160,7 +160,7 @@ const EditModal = (props: EditModalProps) => {
         <Modal
             isOpen={props.isOpen}
             onClose={props.handleModal}
-            title="Eidting Student"
+            title="Editing Student"
         >
             <form
                 className="student-form"

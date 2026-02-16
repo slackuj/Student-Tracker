@@ -19,18 +19,7 @@ const INITIALIZE_DATA_ROWS = (): DataRowsProps[] =>{
 
 const useStudents = () => {
 
-
-    /* ---------------- LIFTING STATE UP ---------------------------- */
-    /* lifting state up from <TableDataRows> and <ActionBar>          */
-    /*        BECAUSE MODAL ELEMENTS IN <ActionBar>                   */
-    /* needs to update data-rows in <TableDataRows> !!!               */
-    /*                    A    N   D                                  */
-    /*                   <TableDataRows>                              */
-    /*                needs to use the states !!!                     */
-
-
     const [dataRows, setDataRows] = useState<DataRowsProps[]>(INITIALIZE_DATA_ROWS);
-
     useEffect(() => {
         // Save to local storage
         localStorage.setItem("dataRows", JSON.stringify(dataRows));

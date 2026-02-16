@@ -14,7 +14,8 @@ const TableHeader = (props: TableHeaderProps) => {
     return (
         <>
             <div className="grid-row header" >
-        <div><input
+        <div
+        ><input
                         type="checkbox"
                         checked={props.allChecked}
                         onChange={props.handleShouldDeleteAll}

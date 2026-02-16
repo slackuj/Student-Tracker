@@ -27,7 +27,7 @@
 .user-name {
     font-weight: 500;
     font-size: 1rem;
-    white-space: nowrap;    /* Prevents the name from wrapping to a second line */
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; /* Adds "..." if the name is too long */
 }
@@ -51,10 +51,3 @@
     background-color: #f3f4f6;
     flex-shrink: 0;
 }
-
-/*
-.user-name {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #111827;
-}*/

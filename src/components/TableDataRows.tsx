@@ -50,13 +50,5 @@ const DataRows = ({dataRows, handleShouldDelete}: dataRowsProps) => {
         </>
     );
 };
-    /*return (
-            {dataRows.map(rw => (
-                    <div className="grid-row" key={rw[1]}>
-                        <div>{rw}</div>
-                    </div>
-                ))}
-);
-};*/
 
 export default DataRows;

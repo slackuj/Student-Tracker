@@ -33,7 +33,7 @@ const useAssignments = (id: string) => {
 
     useEffect(()=> {
         // Fetch assignments on component mount
-        getAssignments();
+        getAssignments().then();
     }, [])
 
     return {

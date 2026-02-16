@@ -10,13 +10,6 @@ const AssignmentActionBar = () => {
             <button className="btn btn--primary" onClick={() => alert('This feature hasn\'t been implemented yet.')}>
                 <FaPlus className="icon" /> New Assignment
             </button>
-
-            {/*<button className="btn btn--danger"
-                    onClick={() => alert('This feature hasn\'t been implemented yet.')}
-            >
-                <FaTimes className="icon" /> Remove Assignment
-            </button>*/}
-
             <button className="btn btn--secondary"
                     onClick={() => window.location.reload()}
             >
