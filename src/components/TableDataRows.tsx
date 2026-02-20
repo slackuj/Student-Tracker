@@ -2,9 +2,11 @@ import './TableDataRows.css';
 import './Table.css';
 import Avatar from "./Avatar.tsx";
 import {NavLink} from "react-router";
+import {useStudentContext} from "../context/StudentContextProvider.tsx";
 
 export type Gender = "Male" | "Female" | "Other";
 
+// DataRowsProps IS THE OBJECT HOLDING STUDENT DATA !!!
 export interface DataRowsProps {
     id: string;
     name: string;
@@ -15,14 +17,16 @@ export interface DataRowsProps {
     imgURL?: string;
     shouldDelete: boolean;
 }
-interface dataRowsProps {
+
+/*interface dataRowsProps {
     dataRows: DataRowsProps[];
     handleShouldDelete: (id: string) => void;
-}
+}*/
 
 
-const DataRows = ({dataRows, handleShouldDelete}: dataRowsProps) => {
+const DataRows = () => {
 
+    const {dataRows, handleShouldDelete} = useStudentContext();
     return (
         <>
             {dataRows.map(dataRow => (

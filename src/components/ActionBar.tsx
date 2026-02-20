@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaPlus, FaTimes, FaSyncAlt } from "react-icons/fa";
 import NewStudentModal, {DeletionModal} from './ModalForms.tsx';
 import './ActionBar.css';
-import './AddNewStudent.css';
-import './DeletionModal.css';
+import {useStudentContext} from "../context/StudentContextProvider.tsx";
 
-interface ActionBarProps {
+/*interface ActionBarProps {
     handleNewStudent: () => void;
     isRmvBtnDisabled: boolean;
     handleDeletion: () => void;
     handleStudentValidation: () => string;
     handleChange: (e: React.ChangeEvent<HTMLElement>) => void;
-}
+}*/
 
-const ActionBar = (props: ActionBarProps) => {
+
+const ActionBar = () => {
+    const StudentContext = useStudentContext();
 
     const [isStudentModalOpen, setStudentModalOpen] = useState(false);
     const [isDeletionModalOpen, setDeletionModalOpen] = useState(false);
+    const isRmvBtnDisabled = !StudentContext.dataRows.some(dataRow => dataRow.shouldDelete);
 
     const handleStudentModal = () => {
         /*console.log(isStudentModalOpen);*/
@@ -34,7 +36,7 @@ const ActionBar = (props: ActionBarProps) => {
             </button>
 
             <button className="btn btn--danger"
-                    disabled={props.isRmvBtnDisabled}
+                    disabled={isRmvBtnDisabled}
                     onClick={() => setDeletionModalOpen(true)}
             >
                 <FaTimes className="icon" /> Remove Student
@@ -46,15 +48,11 @@ const ActionBar = (props: ActionBarProps) => {
             </button>
 
            <NewStudentModal
-               handleStudent={props.handleNewStudent}
-               handleStudentValidation={props.handleStudentValidation}
-               handleChange={props.handleChange}
                isOpen={isStudentModalOpen}
                handleModal={handleStudentModal}
            />
 
             <DeletionModal
-                handleDeletion={props.handleDeletion}
                 isOpen={isDeletionModalOpen}
                 handleModal={handleDeletionModal}
             />

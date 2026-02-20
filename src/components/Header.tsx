@@ -1,6 +1,7 @@
 import './Header.css';
 import favicon from '../assets/tracker.svg';
 import {NavLink} from "react-router";
+import {ThemeButton} from "./ThemeButton.tsx";
 
 interface HeaderProps {
     title: string;
@@ -8,10 +9,9 @@ interface HeaderProps {
 
 const Header = ({title} : HeaderProps) => {
     return (
-        <header>
+        <header className="app-header">
             <NavLink
                 to="/"
-                className="app-header"
             >
             <img
                 className="favicon"
@@ -20,6 +20,7 @@ const Header = ({title} : HeaderProps) => {
             />
                 <span className="header__title">{title}</span>
             </NavLink>
+            <ThemeButton/>
         </header>
     )
 }

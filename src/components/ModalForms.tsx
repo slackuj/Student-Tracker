@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import Modal from './Modal';
-import './AddNewStudent.css';
-import './AddNewStudent.css';
-import './DeletionModal.css';
+//import './AddNewStudent.css';
+//import './DeletionModal.css';
 import type {DataRowsProps} from "./TableDataRows.tsx";
 import {useNavigate} from "react-router";
+import {useStudentContext} from "../context/StudentContextProvider.tsx";
 
 interface StudentModalProps {
 
-    handleStudent: () => void;
+    /*handleStudent: () => void;
     handleStudentValidation: () => string;
-    handleChange: (e: React.ChangeEvent<HTMLElement>) => void;
+    handleChange: (e: React.ChangeEvent<HTMLElement>) => void;*/
     isOpen: boolean;
     handleModal: () => void;
 }
@@ -20,20 +20,22 @@ interface EditModalProps {
     isOpen: boolean;
     handleModal: () => void;
     student: DataRowsProps | null;
-    setStudentProps: (student: DataRowsProps) => void;
-    handleUpdateValidation: (student: DataRowsProps) => string;
+    /*setStudentProps: (student: DataRowsProps) => void;
+    handleUpdateValidation: (student: DataRowsProps) => string;*/
 }
 
 interface DeletionModalProps {
 
     isOpen: boolean;
     handleModal: () => void;
-    handleDeletion: () => void;
-    handleShouldDelete?: (id: string) => void;// used inside StudentActionBar
+    /*handleDeletion: () => void;
+    handleShouldDelete?: (id: string) => void;// used inside StudentActionBar*/
     studentID?: string;
 }
 
+
 const StudentModal = (props: StudentModalProps) => {
+    const StudentContext = useStudentContext();
 
         return (
             <Modal
@@ -45,9 +47,9 @@ const StudentModal = (props: StudentModalProps) => {
                     className="student-form"
                     onSubmit={(e) => {
                         e.preventDefault();
-                            if (props.handleStudentValidation() === 'validated') {
+                            if (StudentContext.handleStudentValidation() === 'validated') {
                                 props.handleModal();
-                                    props.handleStudent();
+                                    StudentContext.handleNewStudent();
                         }
                     }
                     }
@@ -60,7 +62,7 @@ const StudentModal = (props: StudentModalProps) => {
                                type="text"
                                placeholder="enter name ..."
                                required
-                               onChange={props.handleChange}
+                               onChange={StudentContext.handleChange}
                         />
                     </div>
                     <div className="form-group">
@@ -72,7 +74,7 @@ const StudentModal = (props: StudentModalProps) => {
                             type="number"
                             placeholder="721028"
                             required
-                            onChange={props.handleChange}
+                            onChange={StudentContext.handleChange}
                         />
                     </div>
                     <div className="form-group">
@@ -83,7 +85,7 @@ const StudentModal = (props: StudentModalProps) => {
                                type="text"
                                placeholder="A"
                                required
-                               onChange={props.handleChange}
+                               onChange={StudentContext.handleChange}
                         />
                     </div>
                     <div className="form-group">
@@ -95,7 +97,7 @@ const StudentModal = (props: StudentModalProps) => {
                             type="number"
                             placeholder="9800000000"
                             required
-                            onChange={props.handleChange}
+                            onChange={StudentContext.handleChange}
                         />
                     </div>
                     <div className="form-group">
@@ -105,7 +107,7 @@ const StudentModal = (props: StudentModalProps) => {
                             name="gender"
                             className="student-form__gender"
                             value="Male"
-                            onChange={props.handleChange}
+                            onChange={StudentContext.handleChange}
                         >
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -119,7 +121,7 @@ const StudentModal = (props: StudentModalProps) => {
                                name="imgURL"
                                type="text"
                                placeholder="enter imageURL"
-                               onChange={props.handleChange}
+                               onChange={StudentContext.handleChange}
                         />
                     </div>
                     <div className="form-actions">
@@ -140,6 +142,7 @@ const StudentModal = (props: StudentModalProps) => {
 
 const EditModal = (props: EditModalProps) => {
 
+    const StudentContext = useStudentContext();
     if (!props.student){
         return null;
     }
@@ -166,9 +169,9 @@ const EditModal = (props: EditModalProps) => {
                 className="student-form"
                 onSubmit={(e) => {
                     e.preventDefault();
-                    if (props.handleUpdateValidation(Student) === 'validated') {
+                    if (StudentContext.handleUpdateValidation(Student) === 'validated') {
                         props.handleModal();
-                        props.setStudentProps(Student);
+                        StudentContext.setStudentProps(Student);
                     }
                 }
                 }
@@ -266,6 +269,7 @@ const EditModal = (props: EditModalProps) => {
 
 const DeletionModal = (props: DeletionModalProps) => {
 
+    const StudentContext = useStudentContext();
     let navigate = useNavigate();
     return (
         <Modal
@@ -275,19 +279,21 @@ const DeletionModal = (props: DeletionModalProps) => {
             >
             <form className="student-deletion-form"
                   onSubmit={(e) => {
+                      console.log('remove clicked');
                       e.preventDefault();
                       props.handleModal();
-                      if (props.handleShouldDelete) {
+                      /*if (StudentContext.handleShouldDelete) {
+                          console.log('1: executing here');*/
                           if (props.studentID) {
                               console.log('deleting user from profile page');
-                              props.handleShouldDelete(props.studentID);
+                              StudentContext.handleDeletionByID(props.studentID);
                               navigate("/students");
                           }
-                      } else {
+                      /*}*/ else {
 
                           console.log('deleting user from /students page');
-                          console.log(props.studentID);
-                          props.handleDeletion();
+                          //console.log(props.studentID);
+                          StudentContext.handleDeletion();
                   }}}
             >
                 <div className="form-group">

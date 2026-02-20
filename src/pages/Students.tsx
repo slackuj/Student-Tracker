@@ -1,20 +1,17 @@
 import '../App.css'
 import StudentTable from "../components/StudentTable.tsx";
 import ActionBar from "../components/ActionBar.tsx";
-import SearchBar from "../components/SearchBar.tsx";
-import React, {useState} from "react";
+//import SearchBar from "../components/SearchBar.tsx";
 import 'react-toastify/dist/ReactToastify.css';
-import useStudent from "../hooks/useStudent.tsx";
-import type {DataRowsProps} from "../components/TableDataRows.tsx";
 
-interface StudentsProps {
+/*interface StudentsProps {
     dataRows: DataRowsProps[];
     setDataRows: React.Dispatch<React.SetStateAction<DataRowsProps[]>>;
-}
+}*/
 
-const Students = ({dataRows, setDataRows}: StudentsProps) => {
+const Students = () => {
 
-    const {
+    /*const {
         handleChange,
         handleStudentValidation,
         handleNewStudent,
@@ -23,44 +20,35 @@ const Students = ({dataRows, setDataRows}: StudentsProps) => {
         handleShouldDeleteALL,
         handleDeletion
     } = useStudent(dataRows, setDataRows);
+*/
 
 
-
-    const [searchTerm, setSearchTerm] = useState("");
+    /*const [searchTerm, setSearchTerm] = useState("");
 
 
     const handleSearchTerm = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
-    };
+    };*/
 
-    const shouldDisableRmvBtn = !dataRows.some(dataRow => dataRow.shouldDelete);
 
-    const searchedDataRows = dataRows.filter(dataRow => (
+    /*const searchedDataRows = StudentContext.dataRows.filter(dataRow => (
         dataRow.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         dataRow.rollNumber.toString().includes(searchTerm.toLowerCase()) ||
         dataRow.contactNumber.toString().includes(searchTerm.toLowerCase()) ||
         dataRow.gender.toString().toLowerCase().includes(searchTerm.toLowerCase())
     ));
-
+*/
     return (
         <>
-            <ActionBar
-                handleChange={handleChange}
-                handleNewStudent={handleNewStudent}
-                isRmvBtnDisabled={shouldDisableRmvBtn}
-                handleDeletion={handleDeletion}
-                handleStudentValidation={handleStudentValidation}
-            />
-            <SearchBar
+            <ActionBar/>
+            {/*<SearchBar
                 handleSearchTerm={handleSearchTerm}
                 searchTerm={searchTerm}
-            />
-            <StudentTable
-                dataRows={searchedDataRows}
-                handleShouldDelete={handleShouldDelete}
-                handleShouldDeleteAll={handleShouldDeleteALL}
-                allChecked={allChecked}
-            />
+
+                I M P L E M E N T   A T   L A S T   U S I N G    U S E C O N T E X T ()
+
+            />*/}
+            <StudentTable/>
         </>
     );
 };

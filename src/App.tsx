@@ -7,15 +7,13 @@ import SideBar from "./components/SideBar.tsx";
 import {Route, Routes} from "react-router";
 import Students from "./pages/Students.tsx";
 import StudentProfile from "./pages/student/StudentProfile.tsx";
-import useStudent from "./hooks/useStudent.tsx";
-import useStudents from "./hooks/useStudents.tsx";
 import Assignments from "./pages/student/Assignments.tsx";
 import StudentProfileLayout from "./pages/student/StudentProfileLayout.tsx";
 
 const App = () => {
 
-    const {dataRows, setDataRows} = useStudents();
-    const {
+    //const {dataRows, setDataRows} = useStudents();
+    /*const {
         allChecked,
         handleShouldDelete,
         handleShouldDeleteALL,
@@ -25,7 +23,7 @@ const App = () => {
         handleUpdateValidation,
         handleDeletionByID
     } = useStudent(dataRows, setDataRows);
-
+*/
   return (
       <>
           <div className="topbar">
@@ -38,12 +36,7 @@ const App = () => {
                           <>
                           <SideBar/>
                           <div className="main-content">
-              <StudentTable
-                  dataRows={dataRows}
-                  handleShouldDelete={handleShouldDelete}
-                  handleShouldDeleteAll={handleShouldDeleteALL}
-                  allChecked={allChecked}
-              />
+              <StudentTable/>
                           </div>
                           </>
                       }/>
@@ -51,21 +44,12 @@ const App = () => {
                           <>
                           <SideBar/>
                           <div className="main-content">
-                              <Students
-                                  dataRows={dataRows}
-                                  setDataRows={setDataRows}
-                              />
+                              <Students/>
                           </div>
                           </>
                       }/>
                       <Route path="/student/:id" element={<StudentProfileLayout/>}>
-                          <Route index element={<StudentProfile
-                          getStudentProps={getStudentProps}
-                          setStudentProps={setStudentProps}
-                          handleUpdateValidation={handleUpdateValidation}
-                          handleDeletion={handleDeletion}
-                          handleShouldDelete={handleDeletionByID}
-                      />}/>
+                          <Route index element={<StudentProfile/>}/>
                       <Route path="assignments" element={<Assignments/>}/>
                       </Route>
                   </Routes>
@@ -75,8 +59,6 @@ const App = () => {
           <ToastContainer
                   position="bottom-right"
                   autoClose={false}
-                  hideProgressBar={false}
-                  theme="colored"
               />
       </>
   );

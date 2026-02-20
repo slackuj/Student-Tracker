@@ -2,9 +2,10 @@
     display: flex;
     gap: 12px;
     padding: 6px;
-    background-color: #ecfeff; /* Subtle off-white */
+    background-color: var(--bg-table);
     margin-top: 20px;
     align-items: center;
+    transition: background-color 0.3s ease;
 }
 
 .btn {
@@ -21,28 +22,28 @@
 }
 
 .btn--primary {
-    background-color: #0891b2;
+    background-color: var(--btn-primary-bg);
     color: white;
 }
 
 .btn--primary:hover {
-    background-color: #0e7490;
+    background-color: var(--btn-primary-hover-bg);
 }
 
 .btn--secondary {
-    background-color: white;
-    color: blueviolet;
-    border-color: blueviolet;
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+    border-color: var(--btn-secondary-text);
 }
 
 .btn--secondary:hover {
-    background-color: #f5f3ff;
+    background-color: var(--btn-secondary-hover-bg);
 }
 
 .btn--danger:disabled {
-    background-color: #f1f5f9;
-    color: #94a3b8;
-    border-color: #e2e8f0;
+    background-color: var(--btn-disabled-bg);
+    color: var(--btn-disabled-text);
+    border-color: var(--btn-disabled-border);
     cursor: not-allowed;
 }
 

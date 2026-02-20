@@ -1,7 +1,7 @@
 .app-header {
     display: flex;
-    color: white;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
     text-transform: uppercase;
     padding: 10px 20px;
@@ -10,8 +10,40 @@
 .header__title {
     font-size: xx-large;
     font-weight: bold;
+    color: white;
+
 }
 .favicon{
     height: 40px;
     width: 40px;
+}
+
+.theme-button {
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background-color: var(--btn-secondary-bg);
+    color: var(--text-main);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-button:hover {
+    background-color: var(--btn-secondary-hover-bg);
+    border-color: var(--hover-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.theme-button:active {
+    transform: translateY(0);
+}
+
+/* Specific icon styling if needed */
+.theme-button span {
+    font-size: 1.1rem;
+    line-height: 1;
 }

@@ -1,15 +1,16 @@
 import './Table.css';
+import {useStudentContext} from "../context/StudentContextProvider.tsx";
 
-interface TableHeaderProps {
+/*interface TableHeaderProps {
     headers: string[];
     handleShouldDeleteAll: () => void;
     allChecked: boolean;
-}
+}*/
 
-const TableHeader = (props: TableHeaderProps) => {
-    if (props.headers.length === 0){
-        return (<></>);
-    }
+
+const TableHeader = () => {
+    const StudentContext = useStudentContext();
+    const headers: string[] = ["Name", "Roll Number", "Grade", "Contact Number", "Gender"];
 
     return (
         <>
@@ -17,10 +18,10 @@ const TableHeader = (props: TableHeaderProps) => {
         <div
         ><input
                         type="checkbox"
-                        checked={props.allChecked}
-                        onChange={props.handleShouldDeleteAll}
+                        checked={StudentContext.allChecked}
+                        onChange={StudentContext.handleShouldDeleteALL}
                     /></div>
-            {props.headers.map(header => (
+            {headers.map(header => (
                     <div key={crypto.randomUUID()}>{header}</div>
             ))}
             </div>

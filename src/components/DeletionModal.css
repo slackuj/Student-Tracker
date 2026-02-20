@@ -5,18 +5,17 @@
 
 .student-deletion-form .form-group {
     font-size: 1.1rem;
-    color: #334155;
     margin-bottom: 1.5rem;
     line-height: 1.5;
 }
 
 .btn--danger-confirm {
-    background-color: #ef4444;
-    color: white;
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-secondary-bg);
 }
 
 .btn--danger-confirm:hover {
-    background-color: #dc2626;
+    background-color: var(--btn-primary-hover-bg);
 }
 
 .student-deletion-form .form-actions {

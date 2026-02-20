@@ -2,26 +2,28 @@ import '../../App.css'
 import './StudentProfile.css';
 import 'react-toastify/dist/ReactToastify.css';
 import StudentActionBar from "../../components/StudentActionBar.tsx";
-import type {DataRowsProps} from "../../components/TableDataRows.tsx";
 import {useParams} from "react-router";
 import Avatar from "../../components/Avatar.tsx";
+import {useStudentContext} from "../../context/StudentContextProvider.tsx";
 
-interface StudentProfileProps {
+/*interface StudentProfileProps {
 
     getStudentProps: (id: string) => DataRowsProps | null;
     setStudentProps: (students: DataRowsProps) => void;
     handleUpdateValidation: (student: DataRowsProps) => string;
     handleDeletion: () => void;
     handleShouldDelete: (id: string) => void;
-}
+}*/
 
-const StudentProfile = (props: StudentProfileProps) => {
 
+const StudentProfile = () => {
+
+    const StudentContext = useStudentContext();
     const {id} = useParams();
     if (!id) {
         return <div>Student not found.</div>
     }
-    const student = props.getStudentProps(id);
+    const student = StudentContext.getStudentProps(id);
 
     /*console.log('roll: ' + rollNumber)
     console.log(student);*/
@@ -31,13 +33,7 @@ const StudentProfile = (props: StudentProfileProps) => {
 
     return (
         <>
-                <StudentActionBar
-                    getStudentProps={props.getStudentProps}
-                    setStudentProps={props.setStudentProps}
-                    handleUpdateValidation={props.handleUpdateValidation}
-                    handleDeletion={props.handleDeletion}
-                    handleShouldDelete={props.handleShouldDelete}
-                />
+                <StudentActionBar/>
                 <div>
                     <div className="profile-container">
                         <div className="profile-content">

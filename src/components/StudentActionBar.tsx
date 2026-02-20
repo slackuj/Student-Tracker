@@ -4,25 +4,27 @@ import './AddNewStudent.css';
 import './DeletionModal.css';
 import {useState} from "react";
 import {DeletionModal, EditModal} from "./ModalForms.tsx";
-import type {DataRowsProps} from "./TableDataRows.tsx";
 import {useParams} from "react-router";
+import {useStudentContext} from "../context/StudentContextProvider.tsx";
 
-interface StudentProfileProps {
+/*interface StudentProfileProps {
 
     getStudentProps: (id: string) => DataRowsProps | null;
     setStudentProps: (students: DataRowsProps) => void;
     handleUpdateValidation: (student: DataRowsProps) => string;
     handleDeletion: () => void;
     handleShouldDelete: (id: string) => void;
-}
+}*/
 
-const StudentActionBar = (props: StudentProfileProps) => {
+
+const StudentActionBar = () => {
+    const StudentContext = useStudentContext();
 
     const {id} = useParams();
     if (!id) {
         return <div>Student not found.</div>;
     }
-    const student = props.getStudentProps(id);
+    const student = StudentContext.getStudentProps(id);
     if (!student)
         return <div>Student not found.</div>;
 
@@ -59,16 +61,12 @@ const StudentActionBar = (props: StudentProfileProps) => {
                 isOpen={isEditModalOpen}
                 handleModal={handleEditModal}
                 student={student}
-                setStudentProps={props.setStudentProps}
-                handleUpdateValidation={props.handleUpdateValidation}
             />
 
             <DeletionModal
-                handleDeletion={props.handleDeletion}
                 isOpen={isDeletionModalOpen}
                 handleModal={handleDeletionModal}
                 studentID={student.id}
-                handleShouldDelete={props.handleShouldDelete}
             />
         </div>
     );
